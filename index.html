@@ -15,7 +15,6 @@
         --accent: #8b5cf6;
         --accent-2: #ec4899;
         --gold: #fbbf24;
-        --green: #34d399;
       }
 
       * {
@@ -64,7 +63,7 @@
       }
 
       .brand {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -98,7 +97,7 @@
       }
 
       .hero {
-        padding: 82px 0 64px;
+        padding: 90px 0 70px;
       }
 
       .hero-box {
@@ -139,39 +138,6 @@
         font-size: 1.08rem;
         line-height: 1.7;
         max-width: 620px;
-      }
-
-      .cta-row {
-        margin-top: 28px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 14px 22px;
-        border-radius: 12px;
-        font-weight: 700;
-        transition: 0.2s ease;
-        border: 1px solid var(--line);
-      }
-
-      .btn.primary {
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: white;
-        box-shadow: 0 12px 28px rgba(139, 92, 246, 0.35);
-      }
-
-      .btn.secondary {
-        background: rgba(255, 255, 255, 0.02);
-        color: var(--text);
-      }
-
-      .btn:hover {
-        transform: translateY(-2px);
       }
 
       .hero-art {
@@ -240,7 +206,7 @@
 
       .social-grid {
         grid-template-columns: 1fr;
-        max-width: 500px;
+        max-width: 420px;
       }
 
       .clients-grid {
@@ -248,8 +214,7 @@
         max-width: 700px;
       }
 
-      .other-grid,
-      .videos-grid {
+      .other-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
@@ -265,7 +230,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        min-height: 190px;
+        min-height: 170px;
       }
 
       .icon {
@@ -297,46 +262,31 @@
       }
 
       .client-card {
-        min-height: 220px;
-      }
-
-      .client-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 18px;
-      }
-
-      .client-logo {
-        width: 52px;
-        height: 52px;
-        display: grid;
-        place-items: center;
-        border-radius: 14px;
-        font-weight: 800;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(52, 211, 153, 0.2));
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      .badge {
-        border-radius: 999px;
-        padding: 6px 10px;
-        font-size: 0.68rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        background: rgba(52, 211, 153, 0.12);
-        border: 1px solid rgba(52, 211, 153, 0.25);
-        color: #b2f5d6;
+        min-height: 180px;
       }
 
       .client-card h3 {
         margin: 0 0 10px;
+        font-size: 1.8rem;
       }
 
       .client-card p {
         margin: 0;
         color: var(--muted);
         line-height: 1.7;
+      }
+
+      .coming-soon {
+        display: inline-block;
+        margin-top: 14px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: rgba(251, 191, 36, 0.12);
+        border: 1px solid rgba(251, 191, 36, 0.28);
+        color: #f9d67c;
       }
 
       .stat-card {
@@ -355,47 +305,6 @@
         line-height: 1.7;
       }
 
-      .video-card {
-        min-height: 260px;
-      }
-
-      .video-thumb {
-        min-height: 150px;
-        border-radius: 16px;
-        margin-bottom: 16px;
-        border: 1px solid var(--line);
-        background:
-          linear-gradient(135deg, rgba(59,130,246,0.35), rgba(236,72,153,0.25)),
-          linear-gradient(120deg, #1c2330, #121920);
-        position: relative;
-      }
-
-      .video-thumb::before {
-        content: "▶";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 58px;
-        height: 58px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.42);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        display: grid;
-        place-items: center;
-        font-size: 1.4rem;
-      }
-
-      .video-card h3 {
-        margin: 0 0 8px;
-      }
-
-      .video-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.6;
-      }
-
       footer {
         padding: 20px 0 60px;
         text-align: center;
@@ -404,30 +313,7 @@
 
       @media (max-width: 900px) {
         .hero-box,
-        .other-grid,
-        .videos-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .hero-box {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 620px) {
-        nav {
-          flex-direction: column;
-          justify-content: center;
-          padding: 16px 0;
-          gap: 12px;
-        }
-
-        .nav-links {
-          justify-content: center;
-        }
-
-        .other-grid,
-        .videos-grid {
+        .other-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -443,7 +329,6 @@
             <a href="#socials">Socials</a>
             <a href="#clients">Clients</a>
             <a href="#other">Other</a>
-            <a href="#videos">Videos</a>
           </div>
         </nav>
       </div>
@@ -457,15 +342,9 @@
             <h1>Enter the <span class="highlight">Darklands</span></h1>
 
             <p class="subtitle">
-              Regionald's Darklands is a creative brand built around dark storytelling,
-              cinematic visuals, and community-driven content. Explore the world,
-              latest uploads, and creative direction behind the brand.
+              Regionald's Darklands is a bold creative space built for community,
+              media, and immersive digital storytelling. More content is on the way.
             </p>
-
-            <div class="cta-row">
-              <a class="btn primary" href="#videos">Watch Videos</a>
-              <a class="btn secondary" href="#socials">YouTube</a>
-            </div>
           </div>
 
           <div class="hero-art" aria-label="Dark fantasy banner"></div>
@@ -476,17 +355,17 @@
         <div class="container">
           <div class="section-header">
             <h2>Socials</h2>
-            <span class="tag">Follow along</span>
+            <span class="tag">Official channels</span>
           </div>
 
           <div class="grid social-grid">
             <div class="card social-item">
-              <div class="icon">🎬</div>
+              <div class="icon">▶</div>
               <div>
                 <h3>YouTube</h3>
-                <p>Videos, showcases, and creative updates from the Darklands.</p>
+                <p>Videos and updates coming soon.</p>
               </div>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer">Watch</a>
+              <a href="#">Coming Soon</a>
             </div>
           </div>
         </div>
@@ -496,17 +375,14 @@
         <div class="container">
           <div class="section-header">
             <h2>Clients</h2>
-            <span class="tag">Coming soon</span>
+            <span class="tag">Work in progress</span>
           </div>
 
           <div class="grid clients-grid">
             <div class="card client-card">
-              <div class="client-top">
-                <div class="client-logo">?</div>
-                <span class="badge">Soon</span>
-              </div>
-              <h3>Coming Soon</h3>
-              <p>Clientwork and collaborations will be added here when available.</p>
+              <h3>Clients</h3>
+              <p>Client work and collaborations are currently being planned.</p>
+              <span class="coming-soon">Coming Soon</span>
             </div>
           </div>
         </div>
@@ -516,55 +392,26 @@
         <div class="container">
           <div class="section-header">
             <h2>Other</h2>
-            <span class="tag">More about the brand</span>
+            <span class="tag">About the world</span>
           </div>
 
           <div class="grid other-grid">
             <div class="card stat-card">
+              <div class="tag">Status</div>
+              <div class="big-stat">New</div>
+              <p>Building the brand and preparing the next chapter.</p>
+            </div>
+
+            <div class="card stat-card">
               <div class="tag">Focus</div>
-              <div class="big-stat">Dark</div>
-              <p>Creative work centered around atmosphere, identity, and story.</p>
+              <div class="big-stat">Art</div>
+              <p>Creative identity, content, and digital storytelling.</p>
             </div>
 
             <div class="card stat-card">
-              <div class="tag">Style</div>
-              <div class="big-stat">Cinematic</div>
-              <p>Designed to feel immersive, moody, and visually memorable.</p>
-            </div>
-
-            <div class="card stat-card">
-              <div class="tag">Future</div>
-              <div class="big-stat">Soon</div>
-              <p>More content, projects, and updates will be shared over time.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="videos">
-        <div class="container">
-          <div class="section-header">
-            <h2>Videos</h2>
-            <span class="tag">Latest drops</span>
-          </div>
-
-          <div class="grid videos-grid">
-            <div class="card video-card">
-              <div class="video-thumb"></div>
-              <h3>Darklands Intro</h3>
-              <p>Welcome to the world of Regionald's Darklands.</p>
-            </div>
-
-            <div class="card video-card">
-              <div class="video-thumb"></div>
-              <h3>Coming Soon</h3>
-              <p>More videos will be added in the future.</p>
-            </div>
-
-            <div class="card video-card">
-              <div class="video-thumb"></div>
-              <h3>More Content</h3>
-              <p>Fresh uploads and updates are on the way.</p>
+              <div class="tag">Soon</div>
+              <div class="big-stat">Live</div>
+              <p>More updates, projects, and releases coming soon.</p>
             </div>
           </div>
         </div>
