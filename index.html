@@ -9,7 +9,6 @@
         --bg: #0b0d12;
         --bg-2: #121a24;
         --panel: rgba(18, 24, 34, 0.9);
-        --panel-strong: #111b27;
         --line: rgba(255, 255, 255, 0.08);
         --text: #eef4ff;
         --muted: #a7b5c8;
@@ -240,11 +239,13 @@
       }
 
       .social-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+        max-width: 500px;
       }
 
       .clients-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+        max-width: 700px;
       }
 
       .other-grid,
@@ -403,8 +404,6 @@
 
       @media (max-width: 900px) {
         .hero-box,
-        .social-grid,
-        .clients-grid,
         .other-grid,
         .videos-grid {
           grid-template-columns: 1fr 1fr;
@@ -427,8 +426,6 @@
           justify-content: center;
         }
 
-        .social-grid,
-        .clients-grid,
         .other-grid,
         .videos-grid {
           grid-template-columns: 1fr;
@@ -460,14 +457,14 @@
             <h1>Enter the <span class="highlight">Darklands</span></h1>
 
             <p class="subtitle">
-              Regionald's Darklands is a bold creative space built for community,
-              media, and immersive digital storytelling. Explore the world,
-              connect with the brand, and dive into the next chapter of the story.
+              Regionald's Darklands is a creative brand built around dark storytelling,
+              cinematic visuals, and community-driven content. Explore the world,
+              latest uploads, and creative direction behind the brand.
             </p>
 
             <div class="cta-row">
               <a class="btn primary" href="#videos">Watch Videos</a>
-              <a class="btn secondary" href="#socials">Follow Socials</a>
+              <a class="btn secondary" href="#socials">YouTube</a>
             </div>
           </div>
 
@@ -479,44 +476,17 @@
         <div class="container">
           <div class="section-header">
             <h2>Socials</h2>
-            <span class="tag">Stay connected</span>
+            <span class="tag">Follow along</span>
           </div>
 
           <div class="grid social-grid">
             <div class="card social-item">
-              <div class="icon">🎵</div>
-              <div>
-                <h3>Spotify</h3>
-                <p>Curated audio vibes and favorite soundtracks.</p>
-              </div>
-              <a href="#">Follow</a>
-            </div>
-
-            <div class="card social-item">
-              <div class="icon">📸</div>
-              <div>
-                <h3>Instagram</h3>
-                <p>Daily visuals, updates, and mood-driven content.</p>
-              </div>
-              <a href="#">Follow</a>
-            </div>
-
-            <div class="card social-item">
               <div class="icon">🎬</div>
               <div>
                 <h3>YouTube</h3>
-                <p>Videos, behind-the-scenes, and cinematic stories.</p>
+                <p>Videos, showcases, and creative updates from the Darklands.</p>
               </div>
-              <a href="#">Watch</a>
-            </div>
-
-            <div class="card social-item">
-              <div class="icon">💬</div>
-              <div>
-                <h3>Discord</h3>
-                <p>Join the community and talk with the crew.</p>
-              </div>
-              <a href="#">Join</a>
+              <a href="https://youtube.com" target="_blank" rel="noreferrer">Watch</a>
             </div>
           </div>
         </div>
@@ -526,35 +496,17 @@
         <div class="container">
           <div class="section-header">
             <h2>Clients</h2>
-            <span class="tag">Brands & partnerships</span>
+            <span class="tag">Coming soon</span>
           </div>
 
           <div class="grid clients-grid">
             <div class="card client-card">
               <div class="client-top">
-                <div class="client-logo">N</div>
-                <span class="badge">Featured</span>
+                <div class="client-logo">?</div>
+                <span class="badge">Soon</span>
               </div>
-              <h3>Nightfall Studio</h3>
-              <p>Creative direction and branding for immersive entertainment projects.</p>
-            </div>
-
-            <div class="card client-card">
-              <div class="client-top">
-                <div class="client-logo">R</div>
-                <span class="badge">Growth</span>
-              </div>
-              <h3>Rift Media</h3>
-              <p>Campaign visuals and digital storytelling for modern online audiences.</p>
-            </div>
-
-            <div class="card client-card">
-              <div class="client-top">
-                <div class="client-logo">D</div>
-                <span class="badge">Elite</span>
-              </div>
-              <h3>Dark Echo</h3>
-              <p>Identity systems, promotional content, and long-form creative strategy.</p>
+              <h3>Coming Soon</h3>
+              <p>Clientwork and collaborations will be added here when available.</p>
             </div>
           </div>
         </div>
@@ -564,26 +516,26 @@
         <div class="container">
           <div class="section-header">
             <h2>Other</h2>
-            <span class="tag">About the world</span>
+            <span class="tag">More about the brand</span>
           </div>
 
           <div class="grid other-grid">
             <div class="card stat-card">
-              <div class="tag">Projects</div>
-              <div class="big-stat">12+</div>
-              <p>Creative concepts, campaigns, and visual experiences launched.</p>
-            </div>
-
-            <div class="card stat-card">
-              <div class="tag">Audience</div>
-              <div class="big-stat">18k</div>
-              <p>Followers across community channels and social platforms.</p>
-            </div>
-
-            <div class="card stat-card">
               <div class="tag">Focus</div>
-              <div class="big-stat">∞</div>
-              <p>Exploring ideas that push art, identity, and digital culture.</p>
+              <div class="big-stat">Dark</div>
+              <p>Creative work centered around atmosphere, identity, and story.</p>
+            </div>
+
+            <div class="card stat-card">
+              <div class="tag">Style</div>
+              <div class="big-stat">Cinematic</div>
+              <p>Designed to feel immersive, moody, and visually memorable.</p>
+            </div>
+
+            <div class="card stat-card">
+              <div class="tag">Future</div>
+              <div class="big-stat">Soon</div>
+              <p>More content, projects, and updates will be shared over time.</p>
             </div>
           </div>
         </div>
@@ -600,19 +552,19 @@
             <div class="card video-card">
               <div class="video-thumb"></div>
               <h3>Darklands Intro</h3>
-              <p>Worldbuilding trailer for the next chapter of the story.</p>
+              <p>Welcome to the world of Regionald's Darklands.</p>
             </div>
 
             <div class="card video-card">
               <div class="video-thumb"></div>
-              <h3>Behind the Brand</h3>
-              <p>An inside look at the visual identity and creative process.</p>
+              <h3>Coming Soon</h3>
+              <p>More videos will be added in the future.</p>
             </div>
 
             <div class="card video-card">
               <div class="video-thumb"></div>
-              <h3>Community Spotlight</h3>
-              <p>Showcasing fans, collabs, and moments from the Darklands community.</p>
+              <h3>More Content</h3>
+              <p>Fresh uploads and updates are on the way.</p>
             </div>
           </div>
         </div>
