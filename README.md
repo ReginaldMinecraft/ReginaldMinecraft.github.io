@@ -2,7 +2,6 @@
 
 A browser-based gaming portal featuring **Eaglercraft clients**, classic web games, and gaming tools—all playable directly in your browser with no downloads required.
 
-🌐 **Website:** [https://github.io](https://github.io)
 
 ## ✨ Features
 * **Eaglercraft Clients:** Classic Minecraft versions running directly in the browser with multiplayer support.
