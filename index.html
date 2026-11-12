@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReginaldMinecraft's Gaming Hub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #0f1117;
+      color: #e4e6eb;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header {
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #4ade80;
+      margin-bottom: 10px;
+    }
+    p.subtitle {
+      color: #9ca3af;
+      font-size: 1.1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: #1a1d27;
+      border: 1px solid #2e3344;
+      border-radius: 12px;
+      padding: 25px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #4ade80;
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .card p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #4ade80;
+      color: #0f1117;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+    }
+    .btn:hover {
+      background-color: #22c55e;
+    }
+    footer {
+      margin-top: 60px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎮 ReginaldMinecraft's Gaming Hub</h1>
+    <p class="subtitle">Play Eaglercraft clients and browser games with zero downloads.</p>
+  </header>
+
+  <main class="grid">
+    <div class="card">
+      <h2>⛏️ Eaglercraft 1.8.8</h2>
+      <p>Classic multiplayer Minecraft right in your web browser.</p>
+      <a href="eaglercraft-1.8.html" class="btn">Play Now</a>
+    </div>
+
+    <div class="card">
+      <h2>🧱 Eaglercraft 1.5.2</h2>
+      <p>Lightweight retro version for smooth performance on any device.</p>
+      <a href="eaglercraft-1.5.html" class="btn">Play Now</a>
+    </div>
+
+    <div class="card">
+      <h2>🕹️ Web Games</h2>
+      <p>A collection of fast HTML5 and retro arcade classics.</p>
+      <a href="games.html" class="btn">Browse Games</a>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ Gaming Tools</h2>
+      <p>Useful utilities, texture packs, and fun web tools.</p>
+      <a href="tools.html" class="btn">Open Tools</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>Created by ReginaldMinecraft • Hosted on GitHub Pages</p>
+  </footer>
+
+</body>
+</html>
