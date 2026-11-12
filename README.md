@@ -1,16 +1,14 @@
-## Hi there 👋
+# 🎮 ReginaldMinecraft's Gaming Hub
 
-<!--
-**ReginaldMinecraft/ReginaldMinecraft** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+A browser-based gaming portal featuring **Eaglercraft clients**, classic web games, and gaming tools—all playable directly in your browser with no downloads required.
 
-Here are some ideas to get you started:
+🌐 **Website:** [https://github.io](https://github.io)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## ✨ Features
+* **Eaglercraft Clients:** Classic Minecraft versions running directly in the browser with multiplayer support.
+* **Web Games:** A collection of lightweight HTML5, retro arcade, and classic browser games.
+* **Gaming Tools:** Extra utilities and fun web-based gaming features.
+* **Instant Access:** Fast loading times with zero installations needed.
+
+## ⚠️ Disclaimer
+This website is a fan-made gaming portal for entertainment purposes. All third-party game clients, assets, and trademarks belong to their respective owners.
