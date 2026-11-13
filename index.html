@@ -3,149 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReginaldMinecraft Messenger</title>
-  <!-- PeerJS for Video & Voice Calls -->
+  <title>ReginaldMinecraft Teams</title>
   <script src="https://unpkg.com"></script>
   <style>
-    body { font-family: Arial, sans-serif; background: #1e1f22; color: #f2f3f5; margin: 0; display: flex; flex-direction: column; height: 100vh; }
-    header { background: #2b2d31; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #111; }
-    .container { display: flex; flex: 1; overflow: hidden; }
-    .chat-section { flex: 2; display: flex; flex-direction: column; padding: 15px; }
-    .call-section { flex: 1; background: #2b2d31; padding: 15px; display: flex; flex-direction: column; gap: 10px; border-left: 1px solid #111; }
-    #messages { flex: 1; overflow-y: auto; background: #313338; padding: 15px; border-radius: 8px; margin-bottom: 10px; }
-    .msg { margin-bottom: 8px; line-height: 1.4; }
-    .msg strong { color: #5865f2; }
-    .input-row { display: flex; gap: 8px; }
-    input { padding: 10px; border-radius: 5px; border: none; background: #383a40; color: white; flex: 1; }
-    button { padding: 10px 15px; border-radius: 5px; border: none; background: #5865f2; color: white; cursor: pointer; font-weight: bold; }
-    button:hover { background: #4752c4; }
-    button.end-btn { background: #da373c; }
-    video { width: 100%; background: #000; border-radius: 8px; max-height: 220px; object-fit: cover; }
-    .id-box { background: #1e1f22; padding: 8px; border-radius: 5px; font-size: 0.9em; word-break: break-all; }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif}
+    body{background:#1f1f1f;color:#fff;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+    .top{height:46px;background:#141414;border-bottom:1px solid #3d3d3d;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:14px}
+    .badge{background:#5b5fc7;padding:3px 7px;border-radius:5px;font-weight:700;margin-right:8px}
+    input{background:#383838;border:1px solid #3d3d3d;color:#fff;padding:6px 10px;border-radius:4px;outline:none}
+    input:focus{border-color:#5b5fc7}
+    .main{display:flex;flex:1;overflow:hidden}
+    .rail{width:54px;background:#141414;border-right:1px solid #3d3d3d;display:flex;flex-direction:column;align-items:center;padding-top:12px;gap:16px;font-size:18px}
+    .side{width:200px;background:#242424;border-right:1px solid #3d3d3d;padding:12px}
+    .chan{background:#333;padding:8px 10px;border-radius:6px;margin-top:10px;font-size:14px}
+    .chat{flex:1;background:#292929;display:flex;flex-direction:column}
+    .hdr{padding:12px 16px;border-bottom:1px solid #3d3d3d;font-weight:600}
+    #msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+    .msg{display:flex;gap:10px;align-items:flex-start}
+    .av{width:30px;height:30px;border-radius:50%;background:#5b5fc7;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+    .bub{background:#333;padding:8px 12px;border-radius:8px;border:1px solid #3d3d3d;max-width:80%}
+    .meta{font-size:11px;color:#adadad;margin-bottom:2px}
+    .meta b{color:#9ea2ff;font-size:13px;margin-right:6px}
+    .bar{padding:12px;border-top:1px solid #3d3d3d;display:flex;gap:8px}
+    .bar input{flex:1;border-bottom:2px solid #5b5fc7}
+    button{background:#5b5fc7;color:#fff;border:none;border-radius:4px;padding:7px 12px;font-weight:600;cursor:pointer}
+    button:hover{background:#4f52b2}
+    .sec{background:#333;border:1px solid #3d3d3d}
+    .red{background:#c4314b}
+    .call{width:300px;background:#242424;border-left:1px solid #3d3d3d;padding:14px;display:flex;flex-direction:column;gap:10px}
+    .idbox{background:#1f1f1f;padding:8px;border-radius:6px;border:1px solid #3d3d3d;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#9ea2ff}
+    .row{display:flex;gap:6px}.row input{flex:1}
+    video{width:100%;aspect-ratio:16/10;background:#111;border-radius:6px;border:1px solid #3d3d3d;object-fit:cover}
+    .ctrls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+    @media(max-width:850px){.rail,.side{display:none}.main{flex-direction:column}.call{width:100%;height:44%;border-left:none;border-top:1px solid #3d3d3d}}
   </style>
 </head>
 <body>
-
-<header>
-  <div><strong>ReginaldMinecraft Messenger</strong></div>
-  <div>
-    <input type="text" id="username" placeholder="Your Name" value="Guest" style="width: 140px;">
+  <div class="top">
+    <div><span class="badge">RM</span><b>ReginaldMinecraft Teams</b></div>
+    <div>Name: <input id="user" value="Guest" style="width:120px"></div>
   </div>
-</header>
-
-<div class="container">
-  <!-- Live Text Chat -->
-  <div class="chat-section">
-    <div id="messages"></div>
-    <div class="input-row">
-      <input type="text" id="msgInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
-      <button onclick="sendMessage()">Send</button>
+  <div class="main">
+    <div class="rail"><span>💬</span><span>📹</span></div>
+    <div class="side"><b>ReginaldMinecraft</b><div class="chan">🟢 # General</div></div>
+    <div class="chat">
+      <div class="hdr"># General</div>
+      <div id="msgs"></div>
+      <div class="bar">
+        <input id="txt" placeholder="Type a message..." onkeypress="if(event.key==='Enter')send()">
+        <button onclick="send()">Send</button>
+      </div>
+    </div>
+    <div class="call">
+      <b>Meeting & Calls</b>
+      <div class="idbox"><span id="myid">Connecting...</span><button class="sec" onclick="navigator.clipboard.writeText(myid.textContent)">Copy</button></div>
+      <div class="row"><input id="pid" placeholder="Friend's ID"><button onclick="join()">Join</button></div>
+      <video id="rv" autoplay playsinline></video>
+      <video id="lv" autoplay muted playsinline></video>
+      <div class="ctrls">
+        <button class="sec" id="mb" onclick="mute()">Mute</button>
+        <button class="sec" id="cb" onclick="cam()">Cam Off</button>
+        <button class="red" onclick="end()">Leave</button>
+      </div>
     </div>
   </div>
-
-  <!-- Video & Voice Calls -->
-  <div class="call-section">
-    <h3>Voice & Video Call</h3>
-    <div class="id-box">Your Call ID: <strong id="my-id">Connecting...</strong></div>
-    <div class="input-row">
-      <input type="text" id="peer-id-input" placeholder="Paste friend's Call ID">
-      <button onclick="startCall()">Call</button>
-    </div>
-    <button class="end-btn" onclick="endCall()">End Call</button>
-    <video id="remote-video" autoplay playsinline></video>
-    <video id="local-video" autoplay muted playsinline></video>
-  </div>
-</div>
-
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://gstatic.com";
-  import { getDatabase, ref, push, onChildAdded } from "https://gstatic.com";
-
-  // PASTE YOUR FIREBASE CONFIG BELOW
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_://firebaseapp.com",
-    databaseURL: "https://YOUR_://firebaseio.com",
-    projectId: "YOUR_PROJECT",
-    storageBucket: "YOUR_://appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const messagesRef = ref(db, 'messages');
-
-  window.sendMessage = function() {
-    const input = document.getElementById('msgInput');
-    const user = document.getElementById('username').value.trim() || 'Guest';
-    const text = input.value.trim();
-    if (!text) return;
-
-    push(messagesRef, { user: user, text: text });
-    input.value = '';
-  };
-
-  onChildAdded(messagesRef, (snapshot) => {
-    const data = snapshot.val();
-    const box = document.getElementById('messages');
-    const div = document.createElement('div');
-    div.className = 'msg';
-    div.innerHTML = `<strong>${escapeHTML(data.user)}:</strong> ${escapeHTML(data.text)}`;
-    box.appendChild(div);
-    box.scrollTop = box.scrollHeight;
-  });
-
-  function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-    }[tag]));
-  }
-</script>
-
-<!-- PeerJS Calling Logic -->
-<script>
-  const peer = new Peer();
-  let currentCall = null;
-  let localStream = null;
-
-  peer.on('open', (id) => {
-    document.getElementById('my-id').textContent = id;
-  });
-
-  peer.on('call', async (call) => {
-    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    document.getElementById('local-video').srcObject = localStream;
-    call.answer(localStream);
-    handleCall(call);
-  });
-
-  async function startCall() {
-    const remoteId = document.getElementById('peer-id-input').value.trim();
-    if (!remoteId) return alert('Enter a friend\'s Call ID first.');
-    
-    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    document.getElementById('local-video').srcObject = localStream;
-    const call = peer.call(remoteId, localStream);
-    handleCall(call);
-  }
-
-  function handleCall(call) {
-    if (currentCall) currentCall.close();
-    currentCall = call;
-    call.on('stream', (remoteStream) => {
-      document.getElementById('remote-video').srcObject = remoteStream;
-    });
-  }
-
-  function endCall() {
-    if (currentCall) currentCall.close();
-    if (localStream) localStream.getTracks().forEach(track => track.stop());
-    document.getElementById('remote-video').srcObject = null;
-    document.getElementById('local-video').srcObject = null;
-  }
-</script>
-
+  <script type="module">
+    import{initializeApp}from"https://gstatic.com";
+    import{getDatabase,ref,push,onChildAdded}from"https://gstatic.com";
+    const db=getDatabase(initializeApp({
+      apiKey:"YOUR_API_KEY",
+      authDomain:"YOUR_://firebaseapp.com",
+      databaseURL:"https://YOUR_://firebaseio.com",
+      projectId:"YOUR_PROJECT",
+      storageBucket:"YOUR_://appspot.com",
+      messagingSenderId:"YOUR_SENDER_ID",
+      appId:"YOUR_APP_ID"
+    }));
+    const r=ref(db,'messages'),esc=s=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    window.send=()=>{const u=user.value.trim()||'Guest',t=txt.value.trim();if(!t)return;push(r,{u,t,m:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});txt.value='';};
+    onChildAdded(r,s=>{const d=s.val();msgs.innerHTML+=`<div class="msg"><div class="av">${esc((d.u||'G').slice(0,2).toUpperCase())}</div><div class="bub"><div class="meta"><b>${esc(d.u)}</b>${esc(d.m||'')}</div><div>${esc(d.t)}</div></div></div>`;msgs.scrollTop=msgs.scrollHeight;});
+  </script>
+  <script>
+    const peer=new Peer();let cur,st,mm=0,co=0;
+    peer.on('open',id=>myid.textContent=id);
+    peer.on('call',async c=>{st=await navigator.mediaDevices.getUserMedia({video:1,audio:1});lv.srcObject=st;c.answer(st);go(c);});
+    async function join(){if(!pid.value.trim())return alert('Enter ID');st=await navigator.mediaDevices.getUserMedia({video:1,audio:1});lv.srcObject=st;go(peer.call(pid.value.trim(),st));}
+    function go(c){if(cur)cur.close();cur=c;c.on('stream',s=>rv.srcObject=s);}
+    function mute(){if(st){mm=!mm;st.getAudioTracks().forEach(t=>t.enabled=!mm);mb.textContent=mm?'Unmute':'Mute';}}
+    function cam(){if(st){co=!co;st.getVideoTracks().forEach(t=>t.enabled=!co);cb.textContent=co?'Cam On':'Cam Off';}}
+    function end(){if(cur)cur.close();if(st)st.getTracks().forEach(t=>t.stop());rv.srcObject=lv.srcObject=st=null;mm=co=0;mb.textContent='Mute';cb.textContent='Cam Off';}
+  </script>
 </body>
 </html>
