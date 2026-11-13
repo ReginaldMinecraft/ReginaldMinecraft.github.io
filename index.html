@@ -3,115 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReginaldMinecraft's Gaming Hub</title>
+  <title>ReginaldMinecraft Messenger</title>
+  <!-- PeerJS for Video & Voice Calls -->
+  <script src="https://unpkg.com"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-      background-color: #0f1117;
-      color: #e4e6eb;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header {
-      margin-bottom: 40px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: #4ade80;
-      margin-bottom: 10px;
-    }
-    p.subtitle {
-      color: #9ca3af;
-      font-size: 1.1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .card {
-      background-color: #1a1d27;
-      border: 1px solid #2e3344;
-      border-radius: 12px;
-      padding: 25px;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #4ade80;
-    }
-    .card h2 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-    }
-    .card p {
-      color: #9ca3af;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
-    .btn {
-      display: inline-block;
-      background-color: #4ade80;
-      color: #0f1117;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: background-color 0.2s;
-    }
-    .btn:hover {
-      background-color: #22c55e;
-    }
-    footer {
-      margin-top: 60px;
-      color: #6b7280;
-      font-size: 0.9rem;
-    }
+    body { font-family: Arial, sans-serif; background: #1e1f22; color: #f2f3f5; margin: 0; display: flex; flex-direction: column; height: 100vh; }
+    header { background: #2b2d31; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #111; }
+    .container { display: flex; flex: 1; overflow: hidden; }
+    .chat-section { flex: 2; display: flex; flex-direction: column; padding: 15px; }
+    .call-section { flex: 1; background: #2b2d31; padding: 15px; display: flex; flex-direction: column; gap: 10px; border-left: 1px solid #111; }
+    #messages { flex: 1; overflow-y: auto; background: #313338; padding: 15px; border-radius: 8px; margin-bottom: 10px; }
+    .msg { margin-bottom: 8px; line-height: 1.4; }
+    .msg strong { color: #5865f2; }
+    .input-row { display: flex; gap: 8px; }
+    input { padding: 10px; border-radius: 5px; border: none; background: #383a40; color: white; flex: 1; }
+    button { padding: 10px 15px; border-radius: 5px; border: none; background: #5865f2; color: white; cursor: pointer; font-weight: bold; }
+    button:hover { background: #4752c4; }
+    button.end-btn { background: #da373c; }
+    video { width: 100%; background: #000; border-radius: 8px; max-height: 220px; object-fit: cover; }
+    .id-box { background: #1e1f22; padding: 8px; border-radius: 5px; font-size: 0.9em; word-break: break-all; }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🎮 ReginaldMinecraft's Gaming Hub</h1>
-    <p class="subtitle">Play Eaglercraft clients and browser games with zero downloads.</p>
-  </header>
+<header>
+  <div><strong>ReginaldMinecraft Messenger</strong></div>
+  <div>
+    <input type="text" id="username" placeholder="Your Name" value="Guest" style="width: 140px;">
+  </div>
+</header>
 
-  <main class="grid">
-    <div class="card">
-      <h2>🎵 Eaglercraft 26.2 (Music)</h2>
-      <p>Play Eaglercraft 26.2 r46 with full in-game music straight in your browser.</p>
-      <a href="https://github.io" target="_blank" class="btn">Play Now</a>
+<div class="container">
+  <!-- Live Text Chat -->
+  <div class="chat-section">
+    <div id="messages"></div>
+    <div class="input-row">
+      <input type="text" id="msgInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()">Send</button>
     </div>
+  </div>
 
-    <div class="card">
-      <h2>⛏️ Eaglercraft 1.8.8</h2>
-      <p>Classic multiplayer Minecraft right in your web browser.</p>
-      <a href="eaglercraft-1.8.html" class="btn">Play Now</a>
+  <!-- Video & Voice Calls -->
+  <div class="call-section">
+    <h3>Voice & Video Call</h3>
+    <div class="id-box">Your Call ID: <strong id="my-id">Connecting...</strong></div>
+    <div class="input-row">
+      <input type="text" id="peer-id-input" placeholder="Paste friend's Call ID">
+      <button onclick="startCall()">Call</button>
     </div>
+    <button class="end-btn" onclick="endCall()">End Call</button>
+    <video id="remote-video" autoplay playsinline></video>
+    <video id="local-video" autoplay muted playsinline></video>
+  </div>
+</div>
 
-    <div class="card">
-      <h2>🕹️ Web Games</h2>
-      <p>A collection of fast HTML5 and retro arcade classics.</p>
-      <a href="games.html" class="btn">Browse Games</a>
-    </div>
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://gstatic.com";
+  import { getDatabase, ref, push, onChildAdded } from "https://gstatic.com";
 
-    <div class="card">
-      <h2>🛠️ Gaming Tools</h2>
-      <p>Useful utilities, texture packs, and fun web tools.</p>
-      <a href="tools.html" class="btn">Open Tools</a>
-    </div>
-  </main>
+  // PASTE YOUR FIREBASE CONFIG BELOW
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_://firebaseapp.com",
+    databaseURL: "https://YOUR_://firebaseio.com",
+    projectId: "YOUR_PROJECT",
+    storageBucket: "YOUR_://appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-  <footer>
-    <p>Created by ReginaldMinecraft • Hosted on GitHub Pages</p>
-  </footer>
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const messagesRef = ref(db, 'messages');
+
+  window.sendMessage = function() {
+    const input = document.getElementById('msgInput');
+    const user = document.getElementById('username').value.trim() || 'Guest';
+    const text = input.value.trim();
+    if (!text) return;
+
+    push(messagesRef, { user: user, text: text });
+    input.value = '';
+  };
+
+  onChildAdded(messagesRef, (snapshot) => {
+    const data = snapshot.val();
+    const box = document.getElementById('messages');
+    const div = document.createElement('div');
+    div.className = 'msg';
+    div.innerHTML = `<strong>${escapeHTML(data.user)}:</strong> ${escapeHTML(data.text)}`;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+  });
+
+  function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[tag]));
+  }
+</script>
+
+<!-- PeerJS Calling Logic -->
+<script>
+  const peer = new Peer();
+  let currentCall = null;
+  let localStream = null;
+
+  peer.on('open', (id) => {
+    document.getElementById('my-id').textContent = id;
+  });
+
+  peer.on('call', async (call) => {
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    document.getElementById('local-video').srcObject = localStream;
+    call.answer(localStream);
+    handleCall(call);
+  });
+
+  async function startCall() {
+    const remoteId = document.getElementById('peer-id-input').value.trim();
+    if (!remoteId) return alert('Enter a friend\'s Call ID first.');
+    
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    document.getElementById('local-video').srcObject = localStream;
+    const call = peer.call(remoteId, localStream);
+    handleCall(call);
+  }
+
+  function handleCall(call) {
+    if (currentCall) currentCall.close();
+    currentCall = call;
+    call.on('stream', (remoteStream) => {
+      document.getElementById('remote-video').srcObject = remoteStream;
+    });
+  }
+
+  function endCall() {
+    if (currentCall) currentCall.close();
+    if (localStream) localStream.getTracks().forEach(track => track.stop());
+    document.getElementById('remote-video').srcObject = null;
+    document.getElementById('local-video').srcObject = null;
+  }
+</script>
 
 </body>
 </html>
